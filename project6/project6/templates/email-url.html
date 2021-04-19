@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }} <br>
+            <button>OK</button>
+        </table>
+    </form>
+    <br>
+    {% if form.is_valid %}
+        <br>
+        Email: {{ form.email.value|urlize }} <br>
+        Website: {{form.website.value|urlize }} <br>
+        
+    {% endif %}
+{% endblock  %}

@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% block style %}
+    <style>
+        form ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+{% endblock  %}
+{% block body %}
+   <form method="POST">
+        <table cellpadding="8">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <caption align="bottom">
+                <br><button>OK</button>
+            </caption>
+        </table>
+   </form>
+   <br>
+
+   {% if form.is_valid %}
+        color: {{ form.color.value }} <br>
+        size: {{ form.font_size.value }} <br>
+        style: {{ form.font_style.value|join:'' }} <br>
+        family: 
+        {% for f in form.font_family.value %}
+            '{{ f }}'
+            {% if not forloop.last %}
+                , &nbsp;
+            {% endif %}
+        {% endfor %}
+   {% endif %}
+{% endblock  %}

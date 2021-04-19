@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+            <caption align="bottom"><button>OK</button></caption>
+        </table>
+    </form>
+    {% if form.is_valid %}
+        <br>
+        จำนวนซื้อ: {{ quantity }} <br>
+        ราคาต่อหน่วย: {{ price }} <br>
+        รวม: {{ total }} <br>
+
+    {% endif %}
+{% endblock %}

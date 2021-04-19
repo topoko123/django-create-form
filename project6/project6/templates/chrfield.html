@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_p }}
+            <caption align="bottom"><button>OK</button></caption>
+        </table>
+    </form>
+
+    {% if form.is_valid %}
+        <br>
+        Login: {{ form.cleaned_data.login }} <br>
+        Pswd: {{form.pswd.value }} <br>
+        Memo: {{ form.memo.value }} <br>
+    {% endif %}
+{% endblock  %}
